@@ -2,7 +2,7 @@ name: Update Blog Posts
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 매일 09:00 KST
+    - cron: '0 0 * * *'  # 매일 자정(KST)
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          persist-credentials: false  # 토큰 인증 직접 처리하기 위해 false로 설정
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -32,7 +32,13 @@ jobs:
         run: |
           git config --global user.email "yumin991209@naver.com"
           git config --global user.name "yumin1209"
+          
+          # 원격 저장소에서 최신 main 브랜치 가져오기
+          git fetch origin main
+          git reset --hard origin/main
+
           git add .
           git commit -m "🔄 Velog 글 자동 백업 - $(date '+%Y-%m-%d')" || echo "No changes to commit"
-          git pull --rebase https://x-access-token:${{ secrets.GH_PAT }}@github.com/oridungjeol/cs-study.git main
-          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/oridungjeol/cs-study.git
+
+          # GitHub PAT를 이용한 인증 푸시
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/oridungjeol/cs-study.git main
