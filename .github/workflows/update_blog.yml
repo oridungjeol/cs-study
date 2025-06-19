@@ -3,7 +3,7 @@ name: Update Blog Posts
 on:
   schedule:
     - cron: '0 0 * * *'  # 매일 09:00 KST
-  workflow_dispatch:    # 수동 실행 가능
+  workflow_dispatch:
 
 jobs:
   backup:
@@ -21,10 +21,10 @@ jobs:
       - name: Install dependencies
         run: pip install feedparser
 
-      - name: Run Velog backup script
+      - name: Run update_blog.py
         run: |
           mkdir -p posts
-          python velog_backup.py
+          python update_blog.py
 
       - name: Commit and push changes
         run: |
