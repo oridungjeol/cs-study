@@ -11,6 +11,12 @@ if not os.path.exists(posts_dir):
     os.makedirs(posts_dir)
 
 repo = git.Repo(repo_path)
+
+# git config user.name과 user.email 설정
+with repo.config_writer() as git_config:
+    git_config.set_value('user', 'name', 'yumin1209')
+    git_config.set_value('user', 'email', 'yumin991209@naver.com')
+
 feed = feedparser.parse(rss_url)
 
 def sanitize_filename(name):
