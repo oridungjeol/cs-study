@@ -2,18 +2,19 @@ name: Update Blog Posts
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 매일 자정 실행(KST 맞추려면 추가 설정 필요)
-  workflow_dispatch:       # 수동 실행 가능
+    - cron: '0 0 * * *'  # 매일 오전 9시 (KST 기준)
+  workflow_dispatch:      # 수동 실행도 가능하게 함
 
 jobs:
-  update_blog:
+  backup:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GH_PAT }}   # Personal Access Token 사용 권장
+          persist-credentials: false
+          fetch-depth: 0  # 전체 히스토리 clone
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -21,16 +22,19 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install feedparser gitpython
+        run: pip install feedparser
 
-      - name: Run Velog backup script
-        run: python scripts/update_blog.py
+      - name: Run update_blog.py
+        run: |
+          mkdir -p posts
+          python update_blog.py
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.email "yumin991209@naver.com"
+          git config --global user.name "yumin1209"
           git add .
           git commit -m "🔄 Velog 글 자동 백업 - $(date '+%Y-%m-%d')" || echo "No changes to commit"
-          git pull origin main --rebase
-          git push origin main
+          git fetch origin main
+          git reset --soft origin/main
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/oridungjeol/cs-study.git
