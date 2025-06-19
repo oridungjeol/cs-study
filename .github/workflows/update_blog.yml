@@ -1,0 +1,35 @@
+name: Update Blog Posts
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 매일 09:00 KST
+  workflow_dispatch:    # 수동 실행 가능
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install feedparser
+
+      - name: Run Velog backup script
+        run: |
+          mkdir -p posts
+          python velog_backup.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "yumin991209@naver.com"
+          git config --global user.name "yumin1209"
+          git add .
+          git commit -m "🔄 Velog 글 자동 백업 - $(date '+%Y-%m-%d')" || echo "No changes to commit"
+          git push origin main
