@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false  # 토큰 인증 직접 처리하기 위해 false로 설정
 
       - name: Set up Python
         uses: actions/setup-python@v4
