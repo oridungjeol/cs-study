@@ -1,3 +1,4 @@
+<h2>🔐 Spring Security 인증 흐름 이해하기</h2>
 <blockquote>
 <p>인증과 인가는 필터 체인에서 시작된다.<br />Spring Security의 필터 기반 흐름과 주요 클래스별 역할을 이해하면 인증 커스터마이징이 쉬워진다.</p>
 </blockquote>
