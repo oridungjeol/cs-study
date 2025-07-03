@@ -22,6 +22,7 @@ Accept-Language: en
 - 443번 포트를 사용한다
 - 보안 레벨 높음
 - TLS의 공개키 암호화 기술을 사용하여 요청 암호화, 공개키를 SSL 인증서로 클라이언트와 공유한다.
+  - [참고 문서(대칭키와 공개키 정리)](https://github.com/oridungjeol/cs-study/blob/main/content/secure/symmetric%20key%26public%20key.md)    
 - HTTP 요청과 응답을 암호화하여 공격자는 요청 내용 대신 무작위 문자를 보게 된다.
 
 - HTTP 요청 예시
