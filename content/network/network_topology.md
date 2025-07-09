@@ -65,5 +65,5 @@
 > **원인**: 스타 토폴로지는 중앙 노드에 모두 연결 되어 있는 구조이기에 중앙 노드에 원인이 있을 가능성이 높습니다.     
 > **해결**: 중앙 스위치를 가장 먼저 확인하였고 빠르게 네트워크 장애를 해결할 수 있었습니다.    
 
-[IBM-네트워크 토폴로지란 무엇인가요?](https://www.ibm.com/kr-ko/topics/network-topology)
+[IBM-네트워크 토폴로지란 무엇인가요?](https://www.ibm.com/kr-ko/topics/network-topology)     
 면접을 위한 CS 전공지식 노트
