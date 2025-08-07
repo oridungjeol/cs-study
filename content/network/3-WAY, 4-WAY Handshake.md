@@ -34,7 +34,7 @@ TCP는 이러한 신뢰성을 보장하기 위해 **통신 시작 시**와 **종
 
 ## 🔚 4-Way Handshake: 연결 해제
 
-(<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/d12147a2-f794-4028-b413-6330600197b9" />)
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/d12147a2-f794-4028-b413-6330600197b9" />
 
 ### 1. Client → Server : FIN 전송  
 클라이언트가 연결 종료를 요청하며 FIN 플래그를 보냄  
